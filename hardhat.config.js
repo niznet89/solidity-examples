@@ -21,23 +21,25 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 function getMnemonic(networkName) {
-  if (networkName) {
-    const mnemonic = process.env['MNEMONIC_' + networkName.toUpperCase()]
-    if (mnemonic && mnemonic !== '') {
-      return mnemonic
-    }
-  }
+  // if (networkName) {
+  //   const mnemonic = process.env['MNEMONIC_' + networkName.toUpperCase()]
+  //   if (mnemonic && mnemonic !== '') {
+  //     return mnemonic
+  //   }
+  // }
 
-  const mnemonic = process.env.MNEMONIC
-  if (!mnemonic || mnemonic === '') {
-    return 'test test test test test test test test test test test junk'
-  }
+  // const mnemonic = process.env.MNEMONIC
+  // if (!mnemonic || mnemonic === '') {
+  //   return 'test test test test test test test test test test test junk'
+  // }
 
-  return mnemonic
+  // return mnemonic
+  return `0x${process.env.PRIVATE_KEY}`;
 }
 
 function accounts(chainKey) {
-  return { mnemonic: getMnemonic(chainKey) }
+  //return { mnemonic: getMnemonic(chainKey) }
+  return [`0x${process.env.PRIVATE_KEY}`];
 }
 
 // You need to export an object to set up your config
@@ -161,5 +163,8 @@ module.exports = {
       chainId: 4002,
       accounts: accounts(),
     }
-  }
+  },
+  etherscan: {
+    apiKey: "WMTJWYVUG9RUZZ2RWC2YFB5A2UD426I9X9",
+  },
 };
